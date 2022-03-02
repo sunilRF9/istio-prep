@@ -25,6 +25,6 @@ spec:
   http:
     - route:
       - destination:
-          host: frontend-external.default.svc.cluster.local
+          host: frontend
           port:
             number: 80
