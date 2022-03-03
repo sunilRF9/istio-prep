@@ -102,3 +102,17 @@ istio-ingressgateway   LoadBalancer   10.96.192.173   172.18.255.2   15021:31731
 { [6978 bytes data]
                 <div class="h-free-shipping">Free shipping with $100 purchase! &nbsp;&nbsp;</div>
 * Connection #0 to host 172.18.255.2 left intact
+
+"match": {
+                            "prefix": "/",
+                            "caseSensitive": true,
+                            "headers": [
+                                {
+                                    "name": "user-agent",
+                                    "safeRegexMatch": {
+                                        "googleRe2": {},
+                                        "regex": ".*Firefox.*"
+                                    }
+                                }
+                            ]
+                        }
