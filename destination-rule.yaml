@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: onlineboutique-destination-rule
+spec:
+  host: frontend
+  trafficPolicy:
+    loadBalancer:
+      simple: RANDOM
+  subsets:
+  #### This will work only if we have defined version label in the deployment
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+    trafficPolicy:
+      loadBalancer:
+        simple: ROUND_ROBIN

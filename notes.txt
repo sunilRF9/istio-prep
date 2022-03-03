@@ -1,0 +1,47 @@
+ # Provision Metallb Load-Balancer 
+
+ ~/c/istio-prep   *…  kubectl get svc -n istio-system istio-ingressgateway -owide
+NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)                                                                      AGE   SELECTOR
+istio-ingressgateway   LoadBalancer   10.96.192.173   172.18.255.2   15021:31731/TCP,80:32303/TCP,443:30899/TCP,31400:32381/TCP,15443:30661/TCP   15m   app=istio-ingressgateway,istio=ingressgateway
+
+# Apply GW and VS
+# Check Proxy config
+# istioctl proxy-config route istio-ingressgateway-5d95b48945-l477x -n istio-system -o json > proxy-config.json
+
+# Curl without passing Host
+ ~/c/istio-prep   *…  curl -v 172.18.255.2
+*   Trying 172.18.255.2:80...
+* TCP_NODELAY set
+* Connected to 172.18.255.2 (172.18.255.2) port 80 (#0)
+> GET / HTTP/1.1
+> Host: 172.18.255.2
+> User-Agent: curl/7.68.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 404 Not Found
+< date: Thu, 03 Mar 2022 07:22:22 GMT
+< server: istio-envoy
+< content-length: 0
+<
+* Connection #0 to host 172.18.255.2 left intact
+# Curl with valid host
+ ~/c/istio-prep   *…  curl -v -H 'Host:onlineboutique.example.com' 172.18.255.2
+*   Trying 172.18.255.2:80...
+* TCP_NODELAY set
+* Connected to 172.18.255.2 (172.18.255.2) port 80 (#0)
+> GET / HTTP/1.1
+> Host:onlineboutique.example.com
+> User-Agent: curl/7.68.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< set-cookie: shop_session-id=a6ade4be-8a0e-468f-ba63-174600a14d2e; Max-Age=172800
+< date: Thu, 03 Mar 2022 07:22:59 GMT
+< content-type: text/html; charset=utf-8
+< x-envoy-upstream-service-time: 45
+< server: istio-envoy
+< transfer-encoding: chunked
+<
+
