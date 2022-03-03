@@ -44,4 +44,61 @@ istio-ingressgateway   LoadBalancer   10.96.192.173   172.18.255.2   15021:31731
 < server: istio-envoy
 < transfer-encoding: chunked
 <
+# kubectl apply -f vs-split.yaml
+# Proxy config after traffic split
+                      "route": {
+                            "weightedClusters": {
+                                "clusters": [
+                                    {
+                                        "name": "outbound|80|v1|frontend.default.svc.cluster.local",
+                                        "weight": 50
+                                    },
+                                    {
+                                        "name": "outbound|80|v2|frontend.default.svc.cluster.local",
+                                        "weight": 50
+                                    }
+                                ]
+                            },
 
+ 130  ~/c/istio-prep    curl -vsH "Host:onlineboutique.example.com" http://172.18.255.2 | grep --color=auto -i "free shipping"
+*   Trying 172.18.255.2:80...
+* TCP_NODELAY set
+* Connected to 172.18.255.2 (172.18.255.2) port 80 (#0)
+> GET / HTTP/1.1
+> Host:onlineboutique.example.com
+> User-Agent: curl/7.68.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< set-cookie: shop_session-id=c5d75fb5-58c4-4485-a7c8-2ec419b00092; Max-Age=172800
+< date: Thu, 03 Mar 2022 08:33:02 GMT
+< content-type: text/html; charset=utf-8
+< x-envoy-upstream-service-time: 36
+< server: istio-envoy
+< transfer-encoding: chunked
+<
+{ [7968 bytes data]
+                <div class="h-free-shipping">Free shipping with $75 purchase! &nbsp;&nbsp;</div>
+* Connection #0 to host 172.18.255.2 left intact
+ ~/c/istio-prep    curl -vsH "Host:onlineboutique.example.com" http://172.18.255.2 | grep --color=auto -i "free shipping"
+*   Trying 172.18.255.2:80...
+* TCP_NODELAY set
+* Connected to 172.18.255.2 (172.18.255.2) port 80 (#0)
+> GET / HTTP/1.1
+> Host:onlineboutique.example.com
+> User-Agent: curl/7.68.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< set-cookie: shop_session-id=3ad66605-64ef-4e14-b2d0-ba604b5c672e; Max-Age=172800
+< date: Thu, 03 Mar 2022 08:33:05 GMT
+< content-type: text/html; charset=utf-8
+< x-envoy-upstream-service-time: 34
+< server: istio-envoy
+< transfer-encoding: chunked
+<
+{ [6978 bytes data]
+                <div class="h-free-shipping">Free shipping with $100 purchase! &nbsp;&nbsp;</div>
+* Connection #0 to host 172.18.255.2 left intact
