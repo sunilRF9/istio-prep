@@ -1,0 +1,187 @@
+[
+    {
+        "name": "https.443.https.onlineboutique.default",
+        "virtualHosts": [
+            {
+                "name": "onlineboutique.example.com:443",
+                "domains": [
+                    "onlineboutique.example.com",
+                    "onlineboutique.example.com:*"
+                ],
+                "routes": [
+                    {
+                        "match": {
+                            "prefix": "/",
+                            "caseSensitive": true,
+                            "headers": [
+                                {
+                                    "name": "user-agent",
+                                    "safeRegexMatch": {
+                                        "googleRe2": {},
+                                        "regex": ".*Firefox/.*"
+                                    }
+                                }
+                            ]
+                        },
+                        "route": {
+                            "cluster": "outbound|80|v1|frontend.default.svc.cluster.local",
+                            "timeout": "3s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts"
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "3s"
+                        },
+                        "metadata": {
+                            "filterMetadata": {
+                                "istio": {
+                                    "config": "/apis/networking.istio.io/v1alpha3/namespaces/default/virtual-service/onlineboutique"
+                                }
+                            }
+                        },
+                        "decorator": {
+                            "operation": "frontend.default.svc.cluster.local:80/*"
+                        }
+                    },
+                    {
+                        "match": {
+                            "prefix": "/",
+                            "caseSensitive": true,
+                            "headers": [
+                                {
+                                    "name": "user-agent",
+                                    "safeRegexMatch": {
+                                        "googleRe2": {},
+                                        "regex": ".*Chrome/.*"
+                                    }
+                                }
+                            ]
+                        },
+                        "route": {
+                            "cluster": "outbound|80|v2|frontend.default.svc.cluster.local",
+                            "timeout": "3s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts"
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "3s"
+                        },
+                        "metadata": {
+                            "filterMetadata": {
+                                "istio": {
+                                    "config": "/apis/networking.istio.io/v1alpha3/namespaces/default/virtual-service/onlineboutique"
+                                }
+                            }
+                        },
+                        "decorator": {
+                            "operation": "frontend.default.svc.cluster.local:80/*"
+                        }
+                    },
+                    {
+                        "match": {
+                            "prefix": "/",
+                            "caseSensitive": true,
+                            "headers": [
+                                {
+                                    "name": "user-agent",
+                                    "safeRegexMatch": {
+                                        "googleRe2": {},
+                                        "regex": ".*curl/.*"
+                                    }
+                                }
+                            ]
+                        },
+                        "route": {
+                            "cluster": "outbound|80|v1|frontend.default.svc.cluster.local",
+                            "timeout": "0s",
+                            "retryPolicy": {
+                                "retryOn": "connect-failure,refused-stream,unavailable,cancelled,retriable-status-codes",
+                                "numRetries": 2,
+                                "retryHostPredicate": [
+                                    {
+                                        "name": "envoy.retry_host_predicates.previous_hosts"
+                                    }
+                                ],
+                                "hostSelectionRetryMaxAttempts": "5",
+                                "retriableStatusCodes": [
+                                    503
+                                ]
+                            },
+                            "maxGrpcTimeout": "0s"
+                        },
+                        "metadata": {
+                            "filterMetadata": {
+                                "istio": {
+                                    "config": "/apis/networking.istio.io/v1alpha3/namespaces/default/virtual-service/onlineboutique"
+                                }
+                            }
+                        },
+                        "decorator": {
+                            "operation": "frontend.default.svc.cluster.local:80/*"
+                        }
+                    }
+                ],
+                "includeRequestAttemptCount": true
+            }
+        ],
+        "validateClusters": false
+    },
+    {
+        "virtualHosts": [
+            {
+                "name": "backend",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "match": {
+                            "prefix": "/stats/prometheus"
+                        },
+                        "route": {
+                            "cluster": "prometheus_stats"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "virtualHosts": [
+            {
+                "name": "backend",
+                "domains": [
+                    "*"
+                ],
+                "routes": [
+                    {
+                        "match": {
+                            "prefix": "/healthz/ready"
+                        },
+                        "route": {
+                            "cluster": "agent"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
