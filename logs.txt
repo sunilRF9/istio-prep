@@ -1,0 +1,103 @@
+2022-03-07T06:58:50.257809Z	info	FLAG: --concurrency="0"
+2022-03-07T06:58:50.257831Z	info	FLAG: --domain="istio-system.svc.cluster.local"
+2022-03-07T06:58:50.257834Z	info	FLAG: --help="false"
+2022-03-07T06:58:50.257836Z	info	FLAG: --log_as_json="false"
+2022-03-07T06:58:50.257837Z	info	FLAG: --log_caller=""
+2022-03-07T06:58:50.257839Z	info	FLAG: --log_output_level="default:info"
+2022-03-07T06:58:50.257840Z	info	FLAG: --log_rotate=""
+2022-03-07T06:58:50.257841Z	info	FLAG: --log_rotate_max_age="30"
+2022-03-07T06:58:50.257843Z	info	FLAG: --log_rotate_max_backups="1000"
+2022-03-07T06:58:50.257845Z	info	FLAG: --log_rotate_max_size="104857600"
+2022-03-07T06:58:50.257847Z	info	FLAG: --log_stacktrace_level="default:none"
+2022-03-07T06:58:50.257852Z	info	FLAG: --log_target="[stdout]"
+2022-03-07T06:58:50.257854Z	info	FLAG: --meshConfig="./etc/istio/config/mesh"
+2022-03-07T06:58:50.257855Z	info	FLAG: --outlierLogPath=""
+2022-03-07T06:58:50.257856Z	info	FLAG: --proxyComponentLogLevel="misc:error"
+2022-03-07T06:58:50.257857Z	info	FLAG: --proxyLogLevel="warning"
+2022-03-07T06:58:50.257859Z	info	FLAG: --serviceCluster="istio-proxy"
+2022-03-07T06:58:50.257860Z	info	FLAG: --stsPort="0"
+2022-03-07T06:58:50.257862Z	info	FLAG: --templateFile=""
+2022-03-07T06:58:50.257863Z	info	FLAG: --tokenManagerPlugin="GoogleTokenExchange"
+2022-03-07T06:58:50.257867Z	info	FLAG: --vklog="0"
+2022-03-07T06:58:50.257869Z	info	Version 1.13.1-5f3b5ed958ae75156f8656fe7b3794f78e94db84-Clean
+2022-03-07T06:58:50.257983Z	info	Proxy role	ips=[10.244.0.6 fe80::acb0:b8ff:fe91:de96] type=router id=istio-ingressgateway-5d95b48945-6vrtg.istio-system domain=istio-system.svc.cluster.local
+2022-03-07T06:58:50.258023Z	info	Apply mesh config from file accessLogFile: /dev/stdout
+defaultConfig:
+  discoveryAddress: istiod.istio-system.svc:15012
+  proxyMetadata: {}
+  tracing:
+    zipkin:
+      address: zipkin.istio-system:9411
+enablePrometheusMerge: true
+rootNamespace: istio-system
+trustDomain: cluster.local
+2022-03-07T06:58:50.259113Z	info	Effective config: binaryPath: /usr/local/bin/envoy
+configPath: ./etc/istio/proxy
+controlPlaneAuthPolicy: MUTUAL_TLS
+discoveryAddress: istiod.istio-system.svc:15012
+drainDuration: 45s
+parentShutdownDuration: 60s
+proxyAdminPort: 15000
+proxyMetadata: {}
+serviceCluster: istio-proxy
+statNameLength: 189
+statusPort: 15020
+terminationDrainDuration: 5s
+tracing:
+  zipkin:
+    address: zipkin.istio-system:9411
+
+2022-03-07T06:58:50.259133Z	info	JWT policy is third-party-jwt
+2022-03-07T06:58:55.259719Z	info	timed out waiting for platform detection, treating it as Unknown
+2022-03-07T06:58:55.259882Z	info	CA Endpoint istiod.istio-system.svc:15012, provider Citadel
+2022-03-07T06:58:55.259978Z	info	Using CA istiod.istio-system.svc:15012 cert with certs: var/run/secrets/istio/root-cert.pem
+2022-03-07T06:58:55.259984Z	info	Opening status port 15020
+2022-03-07T06:58:55.260288Z	info	citadelclient	Citadel client using custom root cert: var/run/secrets/istio/root-cert.pem
+2022-03-07T06:58:55.273185Z	info	ads	All caches have been synced up in 5.016889656s, marking server ready
+2022-03-07T06:58:55.273416Z	info	sds	SDS server for workload certificates started, listening on "etc/istio/proxy/SDS"
+2022-03-07T06:58:55.273442Z	info	xdsproxy	Initializing with upstream address "istiod.istio-system.svc:15012" and cluster "Kubernetes"
+2022-03-07T06:58:55.273492Z	info	sds	Starting SDS grpc server
+2022-03-07T06:58:55.273665Z	info	starting Http service at 127.0.0.1:15004
+2022-03-07T06:58:55.274394Z	info	Pilot SAN: [istiod.istio-system.svc]
+2022-03-07T06:58:55.275409Z	info	Starting proxy agent
+2022-03-07T06:58:55.275451Z	info	Epoch 0 starting
+2022-03-07T06:58:55.275467Z	info	Envoy command: [-c etc/istio/proxy/envoy-rev0.json --restart-epoch 0 --drain-time-s 45 --drain-strategy immediate --parent-shutdown-time-s 60 --local-address-ip-version v4 --file-flush-interval-msec 1000 --disable-hot-restart --log-format %Y-%m-%dT%T.%fZ	%l	envoy %n	%v -l warning --component-log-level misc:error]
+2022-03-07T06:58:55.313160Z	info	cache	generated new workload certificate	latency=39.656628ms ttl=23h59m59.686854373s
+2022-03-07T06:58:55.313197Z	info	cache	Root cert has changed, start rotating root cert
+2022-03-07T06:58:55.313217Z	info	ads	XDS: Incremental Pushing:0 ConnectedEndpoints:0 Version:
+2022-03-07T06:58:55.313279Z	info	cache	returned workload trust anchor from cache	ttl=23h59m59.686726732s
+2022-03-07T06:58:55.360278Z	info	xdsproxy	connected to upstream XDS server: istiod.istio-system.svc:15012
+2022-03-07T06:58:55.375749Z	info	ads	ADS: new connection for node:istio-ingressgateway-5d95b48945-6vrtg.istio-system-1
+2022-03-07T06:58:55.375867Z	info	cache	returned workload trust anchor from cache	ttl=23h59m59.624139531s
+2022-03-07T06:58:55.376116Z	info	ads	SDS: PUSH request for node:istio-ingressgateway-5d95b48945-6vrtg.istio-system resources:1 size:1.1kB resource:ROOTCA
+2022-03-07T06:58:55.417022Z	info	ads	ADS: new connection for node:istio-ingressgateway-5d95b48945-6vrtg.istio-system-2
+2022-03-07T06:58:55.417177Z	info	cache	returned workload certificate from cache	ttl=23h59m59.582831424s
+2022-03-07T06:58:55.417360Z	info	ads	SDS: PUSH request for node:istio-ingressgateway-5d95b48945-6vrtg.istio-system resources:1 size:4.0kB resource:default
+2022-03-07T06:58:55.802620Z	info	Readiness succeeded in 5.545909716s
+2022-03-07T06:58:55.803195Z	info	Envoy proxy is ready
+[2022-03-07T07:04:41.942Z] "GET / HTTP/1.1" 200 DC downstream_remote_disconnect - "-" 0 7960 37 36 "10.244.0.1" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0" "262b4d16-d83d-9d43-a54e-280732501e9e" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:39442 10.244.0.6:8080 10.244.0.1:41134 - -
+[2022-03-07T07:04:44.123Z] "GET / HTTP/1.1" 200 DC downstream_remote_disconnect - "-" 0 7960 38 37 "10.244.0.1" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0" "c50322fd-0d11-9ea6-beec-b073f83286f0" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46520 10.244.0.6:8080 10.244.0.1:41991 - -
+[2022-03-07T07:04:59.785Z] "GET / HTTP/1.1" 200 - via_upstream - "-" 0 10857 41 41 "10.244.0.1" "curl/7.68.0" "180873d9-acbc-9aed-81d7-76d77d6e059e" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46522 10.244.0.6:8080 10.244.0.1:15265 - -
+[2022-03-07T07:05:29.121Z] "GET / HTTP/1.1" 404 NR route_not_found - "-" 0 0 0 - "10.244.0.1" "curl/7.68.0" "8a73610b-2dab-9a5e-9dd1-3be72d016059" "172.18.255.1" "-" - - 10.244.0.6:8080 10.244.0.1:47940 - -
+[2022-03-07T07:05:43.986Z] "GET / HTTP/1.1" 200 - via_upstream - "-" 0 10857 37 37 "10.244.0.1" "curl/7.68.0" "5e6724c8-0a75-954c-b282-1851193d926f" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46524 10.244.0.6:8080 10.244.0.1:13053 - -
+[2022-03-07T07:17:41.182Z] "GET / HTTP/2" 0 DC downstream_remote_disconnect - "-" 0 0 7043 - "10.244.0.1" "curl/7.68.0" "5d02f2d2-4163-975a-8e8b-bb63d220c145" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:40280 10.244.0.6:8443 10.244.0.1:49493 onlineboutique.example.com -
+[2022-03-07T07:17:52.272Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 39 38 "10.244.0.1" "curl/7.68.0" "ee7423cb-c8b7-9f0d-bde6-11a5b60c0310" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:40294 10.244.0.6:8443 10.244.0.1:49115 onlineboutique.example.com -
+[2022-03-07T07:17:54.979Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 40 34 "10.244.0.1" "curl/7.68.0" "cac697ce-c07d-993f-9c9c-22ac49a996e1" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:40298 10.244.0.6:8443 10.244.0.1:44990 onlineboutique.example.com -
+[2022-03-07T07:26:31.374Z] "GET / HTTP/2" 0 DC downstream_remote_disconnect - "-" 0 0 8396 - "10.244.0.1" "curl/7.68.0" "76b0bd82-39fe-9fd4-b2a6-07f4a278629c" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46526 10.244.0.6:8443 10.244.0.1:52087 onlineboutique.example.com -
+[2022-03-07T07:26:44.698Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10857 11036 11036 "10.244.0.1" "curl/7.68.0" "ad82b2cb-2529-9616-80cc-bfd55df59af8" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46528 10.244.0.6:8443 10.244.0.1:64589 onlineboutique.example.com -
+[2022-03-07T07:27:24.945Z] "GET / HTTP/2" 0 DC downstream_remote_disconnect - "-" 0 0 9353 - "10.244.0.1" "curl/7.68.0" "860e43c0-5e3c-96e9-9d6c-2172f7fe7b6c" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46530 10.244.0.6:8443 10.244.0.1:20270 onlineboutique.example.com -
+[2022-03-07T07:27:35.561Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 34 33 "10.244.0.1" "curl/7.68.0" "fbb62b4a-c382-90c0-acfb-b90b3a1a8721" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:40922 10.244.0.6:8443 10.244.0.1:50740 onlineboutique.example.com -
+[2022-03-07T07:27:40.618Z] "GET / HTTP/2" 0 DC downstream_remote_disconnect - "-" 0 0 2624 - "10.244.0.1" "curl/7.68.0" "0e12be8d-6004-94a2-8a2c-9d71d3344228" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46532 10.244.0.6:8443 10.244.0.1:8082 onlineboutique.example.com -
+[2022-03-07T07:27:44.302Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10857 36 35 "10.244.0.1" "curl/7.68.0" "35a17c09-3d79-9562-8f22-16a2566c9fbb" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46524 10.244.0.6:8443 10.244.0.1:7416 onlineboutique.example.com -
+[2022-03-07T07:27:58.362Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 35 34 "10.244.0.1" "curl/7.68.0" "eb5f2676-bb1c-9d5c-b067-1dcf3f702786" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:40922 10.244.0.6:8443 10.244.0.1:56869 onlineboutique.example.com -
+2022-03-07T07:31:52.904833Z	info	xdsproxy	connected to upstream XDS server: istiod.istio-system.svc:15012
+[2022-03-07T07:39:12.274Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10857 40 39 "10.244.0.1" "curl/7.68.0" "7249cec6-b454-9449-bbdd-c6cd4e4cc6bf" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46534 10.244.0.6:8443 10.244.0.1:3186 onlineboutique.example.com -
+[2022-03-07T07:39:32.601Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 11042 11041 "10.244.0.1" "curl/7.68.0" "dc584d15-83b1-9600-bb83-6943a51be3d1" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:41684 10.244.0.6:8443 10.244.0.1:2925 onlineboutique.example.com -
+[2022-03-07T07:43:13.229Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 11039 11039 "10.244.0.1" "curl/7.68.0" "e5bb62ce-0305-9c7b-b122-8b195b1b9230" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:41912 10.244.0.6:8443 10.244.0.1:52340 onlineboutique.example.com -
+2022-03-07T08:03:30.598384Z	info	xdsproxy	connected to upstream XDS server: istiod.istio-system.svc:15012
+[2022-03-07T08:04:37.525Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 36 35 "10.244.0.1" "curl/7.68.0" "76b2c246-3a0c-9dc8-b7b4-fa2b7778cee5" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:43256 10.244.0.6:8443 10.244.0.1:28859 onlineboutique.example.com -
+[2022-03-07T08:04:48.696Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10861 33 32 "10.244.0.1" "curl/7.68.0" "91e95d4d-6879-9ccb-b3f5-52bf741cb8fc" "onlineboutique.example.com" "10.244.0.13:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:43270 10.244.0.6:8443 10.244.0.1:21193 onlineboutique.example.com -
+[2022-03-07T08:04:52.087Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10857 33 33 "10.244.0.1" "curl/7.68.0" "c9a9227f-8f4e-94bc-9ad6-f14a212a8f06" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46528 10.244.0.6:8443 10.244.0.1:14277 onlineboutique.example.com -
+[2022-03-07T08:04:53.859Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10857 36 34 "10.244.0.1" "curl/7.68.0" "d58b2ac0-e3ae-984a-8f28-e193a0552a6f" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46546 10.244.0.6:8443 10.244.0.1:43547 onlineboutique.example.com -
+[2022-03-07T08:04:55.545Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10857 32 31 "10.244.0.1" "curl/7.68.0" "09d3e48b-e8f3-9409-8434-20b0aa8a193c" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46548 10.244.0.6:8443 10.244.0.1:7066 onlineboutique.example.com -
+[2022-03-07T08:04:56.729Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 10857 11042 11041 "10.244.0.1" "curl/7.68.0" "a63c4171-fdc4-9ada-a06f-d1723446e90f" "onlineboutique.example.com" "10.244.0.11:8080" outbound|80||frontend.default.svc.cluster.local 10.244.0.6:46550 10.244.0.6:8443 10.244.0.1:52893 onlineboutique.example.com -
