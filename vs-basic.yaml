@@ -5,7 +5,7 @@ metadata:
   name: frontend-vs
 spec:
   hosts:
-  - "onlineboutique.example.com"
+  - onlineboutique.example.com
   gateways:
   - frontend-gateway
   http:

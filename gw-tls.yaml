@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: onlineboutique
+  name: frontend-gateway
 spec:
   selector:
     istio: ingressgateway # use Istio default gateway implementation
@@ -10,8 +10,8 @@ spec:
       number: 443
       name: https
       protocol: HTTPS
-    hosts:
-    - "onlineboutique.example.com"
     tls:
       mode: SIMPLE
-      credentialName: onlineboutique-credential
+      credentialName: example-credential
+    hosts:
+    - onlineboutique.example.com
